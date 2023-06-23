@@ -30,7 +30,7 @@ func main() {
 	_ = db.AutoMigrate(&User{})
 
 	// 2.插入数据
-	//db.Create(&User{Name: "Mary", Age: 24, Gender: "女"})
+	db.Create(&User{Name: "Mary", Age: 24, Gender: "女"})
 
 	// 3.查找数据
 	var user = new(User)
@@ -38,9 +38,9 @@ func main() {
 	db.First(&user, "name = ?", "Jack")
 	fmt.Printf("%#v\n", user)
 
-	// 3.修改数据
+	// 4.修改数据
 	db.Model(&user).Update("age", 24)
 
-	// 4.删除数据
+	// 5.删除数据
 	db.Delete(&user)
 }
