@@ -5,15 +5,35 @@
 package main
 
 import (
+	"fmt"
+	"gin-demo/setting"
 	"gorm.io/driver/mysql"
 	"gorm.io/gen"
 	"gorm.io/gen/field"
 	"gorm.io/gorm"
 )
 
-const dsn = "root:123456@tcp(127.0.0.1:3306)/bubble?charset=utf8mb4&parseTime=True&loc=Local"
+var dsn string
+
+func setDsn() {
+	err := setting.InitSetting()
+	if err != nil {
+		fmt.Printf("Unable to parse the configuration file: %v\n", err)
+		return
+	}
+	database := setting.Config.Database
+	dsn = fmt.Sprintf(
+		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		database.Username,
+		database.Password,
+		database.Host,
+		database.Port,
+		database.DB,
+	)
+}
 
 func main() {
+	setDsn()
 	g := gen.NewGenerator(gen.Config{
 		// 指定实体类的路径 可省略
 		ModelPkgPath: "./model/entity",

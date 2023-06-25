@@ -8,13 +8,19 @@ import (
 	"fmt"
 	"gin-demo/db"
 	"gin-demo/route"
+	"gin-demo/setting"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// 从配置文件中加载配置
+	err := setting.InitSetting()
+	if err != nil {
+		return
+	}
 
 	// 连接数据库
-	err := db.ConnectMySQL()
+	err = db.ConnectMySQL(&setting.Config.Database)
 	if err != nil {
 		fmt.Println("connect to MySQL failed, err ", err)
 		return
@@ -29,7 +35,7 @@ func main() {
 	// 设置路由
 	route.SetupRouters(engine)
 
-	err = engine.Run(":9000")
+	err = engine.Run(fmt.Sprintf(":%d", setting.Config.Port))
 	if err != nil {
 		return
 	}
