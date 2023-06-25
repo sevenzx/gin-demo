@@ -1,6 +1,6 @@
 ## gin-demo
 
-内含gin、gorm、gorm-gen的快速学习，以及使用它们来构建一个todo清单的demo
+Includes quick learning of gin, gorm, gorm-gen, and using them to build a demo of a todo list
 
 
 
@@ -9,10 +9,10 @@
 ```
 ├── controller			
 ├── db
-│   ├── gen			gen配置	
-│   ├── mysql.go		MySQL配置
+│   ├── gen			gen configuration	
+│   ├── mysql.go		MySQL configuration
 │   └── todo.sql			
-├── main.go			主入口
+├── main.go			
 ├── model							
 │   ├── entity
 │   └── vo
@@ -20,9 +20,9 @@
 │   ├── gen.go
 │   └── todo.gen.go
 ├── route
-│   └── route.go		路由配置
+│   └── route.go		route configuration
 ├── static
-├── study			快速学习
+├── study			quick learning
 │   ├── gen
 │   ├── gin
 │   └── gorm
