@@ -15,7 +15,10 @@ const dsn = "root:123456@tcp(127.0.0.1:3306)/gin?charset=utf8mb4&parseTime=True&
 
 func main() {
 	g := gen.NewGenerator(gen.Config{
-		OutPath: "./study/gen/dal/query",
+		// 指定实体类的路径 可省略
+		ModelPkgPath: "./study/gen/model/entity",
+		// 指定API路径
+		OutPath: "./study/gen/query",
 		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 	})
 
