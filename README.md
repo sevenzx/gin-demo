@@ -4,7 +4,7 @@ Includes quick learning of gin, gorm, gorm-gen, and using them to build a demo o
 
 
 
-### 项目结构
+### Structure
 
 ```
 ├── controller			
