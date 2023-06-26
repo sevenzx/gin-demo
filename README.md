@@ -6,7 +6,9 @@ Includes quick learning of gin, gorm, gorm-gen, and using them to build a demo o
 
 ### Structure
 
-```
+```tree
+├── conf
+│   └── config.yml      
 ├── controller			
 ├── db
 │   ├── gen			gen configuration	
@@ -21,6 +23,8 @@ Includes quick learning of gin, gorm, gorm-gen, and using them to build a demo o
 │   └── todo.gen.go
 ├── route
 │   └── route.go		route configuration
+├── setting
+│   └── setting.go
 ├── static
 ├── study			quick learning
 │   ├── gen
