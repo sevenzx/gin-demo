@@ -21,14 +21,14 @@ func setDsn() {
 		fmt.Printf("Unable to parse the configuration file: %v\n", err)
 		return
 	}
-	mysql := config.Config.MySQL
+	database := config.Config.MySQL
 	dsn = fmt.Sprintf(
 		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		mysql.Username,
-		mysql.Password,
-		mysql.Host,
-		mysql.Port,
-		mysql.DBName,
+		database.Username,
+		database.Password,
+		database.Host,
+		database.Port,
+		database.DBName,
 	)
 }
 
