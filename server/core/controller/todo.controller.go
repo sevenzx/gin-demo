@@ -5,9 +5,9 @@
 package controller
 
 import (
-	"gin-demo/model/entity"
-	"gin-demo/model/vo"
-	"gin-demo/query"
+	"gin-demo/server/core/model/entity"
+	"gin-demo/server/core/model/vo"
+	"gin-demo/server/core/query"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/copier"
 	"net/http"

@@ -2,10 +2,10 @@
 // Date:        2023/6/25
 // Description:	设置路由
 
-package route
+package router
 
 import (
-	"gin-demo/controller"
+	"gin-demo/server/core/controller"
 	"github.com/gin-gonic/gin"
 )
 

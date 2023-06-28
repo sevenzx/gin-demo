@@ -6,7 +6,7 @@ package main
 
 import (
 	"fmt"
-	"gin-demo/setting"
+	"gin-demo/server/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gen"
 	"gorm.io/gen/field"
@@ -16,19 +16,19 @@ import (
 var dsn string
 
 func setDsn() {
-	err := setting.InitSetting()
+	err := config.InitSetting()
 	if err != nil {
 		fmt.Printf("Unable to parse the configuration file: %v\n", err)
 		return
 	}
-	database := setting.Config.Database
+	mysql := config.Config.MySQL
 	dsn = fmt.Sprintf(
 		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		database.Username,
-		database.Password,
-		database.Host,
-		database.Port,
-		database.DB,
+		mysql.Username,
+		mysql.Password,
+		mysql.Host,
+		mysql.Port,
+		mysql.DBName,
 	)
 }
 
@@ -36,9 +36,9 @@ func main() {
 	setDsn()
 	g := gen.NewGenerator(gen.Config{
 		// 指定实体类的路径 可省略
-		ModelPkgPath: "./model/entity",
+		ModelPkgPath: "server/core/model/entity",
 		// 指定API路径
-		OutPath: "./query",
+		OutPath: "server/core/query",
 		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 	})
 
