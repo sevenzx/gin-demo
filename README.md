@@ -1,34 +1,40 @@
-## gin-demo
+# gin-demo
 
 Includes quick learning of gin, gorm, gorm-gen, and using them to build a demo of a todo list
 
+## Getting Started
 
+```bash
+# run project
+go run server/main.go
+```
+```bash
+# build project
+go build -o bubble server/main.go
+```
 
-### Structure
+## Structure
 
 ```tree
-├── conf
-│   └── config.yml      
-├── controller			
-├── db
-│   ├── gen			gen configuration	
-│   ├── mysql.go		MySQL configuration
-│   └── todo.sql			
-├── main.go			
-├── model							
-│   ├── entity
-│   └── vo
-├── query
-│   ├── gen.go
-│   └── todo.gen.go
-├── route
-│   └── route.go		route configuration
-├── setting
-│   └── setting.go
-├── static
-├── study			quick learning
+├── server
+│   ├── config
+│   │   ├── config.go
+│   │   └── config.yml
+│   ├── core
+│   │   ├── controller
+│   │   ├── model
+│   │   ├── query
+│   │   └── router
+│   ├── db
+│   │   ├── gen
+│   │   └── mysql
+│   └── main.go
+├── study
 │   ├── gen
 │   ├── gin
 │   └── gorm
-└── templates
+└── web
+    ├── static
+    └── templates
+
 ```
