@@ -5,6 +5,7 @@
 package config
 
 import (
+	_ "embed"
 	"fmt"
 	"gopkg.in/yaml.v3"
 	"os"
@@ -25,21 +26,30 @@ type MySQL struct {
 
 var Config ServerConfig
 
+//go:embed config.yml
+var EmbedConfig []byte
+
 func InitSetting() (err error) {
-	// 打开配置文件
-	configFile, err := os.Open("server/config/config.yml")
+	// 先判断根目录下是否有config.yml
+	var configFile *os.File
+	configFile, err = os.Open("config.yml")
 	if err != nil {
-		fmt.Printf("Unable to open the configuration file: %v\n", err)
-		return err
+		// 使用EmbedConfig
+		err = yaml.Unmarshal(EmbedConfig, &Config)
+		if err != nil {
+			return err
+		}
+		fmt.Println("use embed config")
+		return nil
+	} else {
+		// 使用config.yml
+		err = yaml.NewDecoder(configFile).Decode(&Config)
+		if err != nil {
+			fmt.Printf("Unable to parse the configuration file: %v\n", err)
+			return err
+		}
+		_ = configFile.Close()
+		fmt.Println("use config.yml")
+		return nil
 	}
-
-	// 解析配置文件
-	err = yaml.NewDecoder(configFile).Decode(&Config)
-	if err != nil {
-		fmt.Printf("Unable to parse the configuration file: %v\n", err)
-		return err
-	}
-
-	_ = configFile.Close()
-	return nil
 }
